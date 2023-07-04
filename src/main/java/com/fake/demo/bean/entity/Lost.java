@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class Lost {
   private String nameID;
-  @NotBlank(message = "name cannot be blank")
+  @NotBlank(message = "bean.entity.Lost.name cannot be blank")
   private String name;
   @NotBlank
   private String itemDescription;
