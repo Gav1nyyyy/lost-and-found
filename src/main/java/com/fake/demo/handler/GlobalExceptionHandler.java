@@ -43,5 +43,4 @@ public class GlobalExceptionHandler {
         log.error("unknown error occurs", e);
         return Result.error(ExceptionEnum.SERVICE_ERROR);
     }
-
 }

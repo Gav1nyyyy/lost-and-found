@@ -13,7 +13,7 @@ public class AppConfig {
   @Bean
   public LostServiceImpl lostService(DemoProperties demoProperties) {
     return new LostServiceImpl(
-        demoProperties.getDriverClassName(),
+        demoProperties.getDriver(),
         demoProperties.getUrl(),
         demoProperties.getUsername(),
         demoProperties.getPassword());

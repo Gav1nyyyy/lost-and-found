@@ -18,8 +18,8 @@ public class LostServiceImpl {
 
     private String JDBC_DRIVER;
     private String DB_URL;
-    private String USER = "root";
-    private String PASS = "123456";
+    private String USER;
+    private String PASS;
 
     public LostServiceImpl(String JDBC_DRIVER, String DB_URL, String USER, String PASS) {
         this.JDBC_DRIVER = JDBC_DRIVER;
