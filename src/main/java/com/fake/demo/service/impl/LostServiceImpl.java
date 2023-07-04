@@ -2,8 +2,10 @@ package com.fake.demo.service.impl;
 
 import com.fake.demo.bean.entity.Lost;
 import com.fake.demo.exception.NoSuchIdException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,12 +13,22 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
+@RequiredArgsConstructor
 public class LostServiceImpl {
 
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/lost_and_found?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    static final String USER = "root";
-    static final String PASS = "123456";
+    private String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private String DB_URL = "jdbc:mysql://localhost:3306/lost_and_found?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private String USER = "root";
+    private String PASS = "123456";
+
+    public LostServiceImpl(String JDBC_DRIVER, String DB_URL, String USER, String PASS) {
+        this.JDBC_DRIVER = JDBC_DRIVER;
+        this.DB_URL = DB_URL;
+        this.USER = USER;
+        this.PASS = PASS;
+    }
+
+//    private final DataSource dataSource;
 
     public void create(Lost lost) {
         lost.setNameID(UUID.randomUUID().toString());

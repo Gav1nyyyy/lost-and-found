@@ -3,18 +3,22 @@ package com.fake.demo.controller;
 import com.fake.demo.bean.Result;
 import com.fake.demo.bean.entity.Lost;
 import com.fake.demo.service.impl.LostServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/lost")
 @Slf4j
+@RequiredArgsConstructor // inject lostService with a constructor
 public class LostController {
 
-    LostServiceImpl lostService = new LostServiceImpl();
+    private final LostServiceImpl lostService;
 
     @GetMapping(value = "/fetchById")
     public Result<Lost> fetchById(@RequestParam String id) {
