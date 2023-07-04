@@ -16,8 +16,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class LostServiceImpl {
 
-    private String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private String DB_URL = "jdbc:mysql://localhost:3306/lost_and_found?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private String JDBC_DRIVER;
+    private String DB_URL;
     private String USER = "root";
     private String PASS = "123456";
 
