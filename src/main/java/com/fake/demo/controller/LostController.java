@@ -1,10 +1,12 @@
 package com.fake.demo.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fake.demo.bean.Result;
 import com.fake.demo.bean.entity.Lost;
 import com.fake.demo.exception.NoSuchIdException;
 import com.fake.demo.service.impl.LostServiceImpl;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.PageSerializable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +34,7 @@ public class LostController {
     }
 
     @PostMapping(value = "/fetchByPage")
-    public Result<Page<Lost>> fetchByPage(@RequestParam int size, @RequestParam int current, @RequestBody Lost lost){
+    public Result<PageSerializable<Lost>> fetchByPage(@RequestParam int size, @RequestParam int current, @RequestBody Lost lost){
         return Result.success(lostService.fetchByPage(size, current, lost));
     }
 
