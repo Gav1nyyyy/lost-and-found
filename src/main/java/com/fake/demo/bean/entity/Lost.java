@@ -15,7 +15,7 @@ public class Lost {
   @NotBlank(message = "bean.entity.Lost.name cannot be blank")
   private String name;
   @NotBlank
-  private String itemDescription;
+  private String itemDesc;
   @NotBlank
   private String lostTime;
   @NotBlank

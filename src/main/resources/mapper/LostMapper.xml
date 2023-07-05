@@ -4,12 +4,12 @@
 
     <insert id="create">
         INSERT INTO lost_list (name_id, name, item_desc, lost_time, grade, found_item, id_if_found)
-        VALUES (#{lost.nameID}, #{lost.name}, #{lost.itemDescription}, #{lost.lostTime}, #{lost.grade}, #{lost.foundItem}, #{lost.idIfFound})
+        VALUES (#{lost.nameID}, #{lost.name}, #{lost.itemDesc}, #{lost.lostTime}, #{lost.grade}, #{lost.foundItem}, #{lost.idIfFound})
     </insert>
 
     <update id="update">
         UPDATE lost_list
-        SET name = #{lost.name}, item_desc = #{lost.itemDescription}, lost_time = #{lost.lostTime}, grade = #{lost.grade}, found_item = #{lost.foundItem}, id_if_found = #{lost.idIfFound}
+        SET name = #{lost.name}, item_desc = #{lost.itemDesc}, lost_time = #{lost.lostTime}, grade = #{lost.grade}, found_item = #{lost.foundItem}, id_if_found = #{lost.idIfFound}
         WHERE name_id = #{lost.nameID}
     </update>
 
@@ -24,4 +24,5 @@
     <select id="fetchByPage" resultType="com.fake.demo.bean.entity.Lost">
         SELECT * FROM lost_list LIMIT #{size} OFFSET #{offset}
     </select>
+
 </mapper>

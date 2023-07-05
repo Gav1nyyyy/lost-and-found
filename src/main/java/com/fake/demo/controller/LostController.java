@@ -41,8 +41,8 @@ public class LostController {
         return Result.success();
     }
 
-    @GetMapping(value = "/remove/{id}")
-    public Result<String> remove(@PathVariable String id){
+    @GetMapping(value = "/remove")
+    public Result<String> remove(@RequestParam String id){
         if(lostService.remove(id) == 0){
             throw new NoSuchIdException();
         }
