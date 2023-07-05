@@ -1,5 +1,6 @@
 package com.fake.demo.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fake.demo.bean.Result;
 import com.fake.demo.bean.entity.Lost;
 import com.fake.demo.exception.NoSuchIdException;
@@ -30,9 +31,9 @@ public class LostController {
         return Result.success(lostService.fetchById(id));
     }
 
-    @GetMapping(value = "/fetchByPage")
-    public Result<List<Lost>> fetchByPage(@RequestParam int size, @RequestParam int page){
-        return Result.success(lostService.fetchByPage(size, page));
+    @PostMapping(value = "/fetchByPage")
+    public Result<Page<Lost>> fetchByPage(@RequestParam int size, @RequestParam int current, @RequestBody Lost lost){
+        return Result.success(lostService.fetchByPage(size, current, lost));
     }
 
     @PostMapping(value = "/create")

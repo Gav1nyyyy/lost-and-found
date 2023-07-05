@@ -19,3 +19,10 @@ mybatis:
   type-aliases-package: com.fake.demo.bean.entity
   configuration:
     map-underscore-to-camel-case: true
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  typeAliasesPackage: com.fake.demo.bean.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

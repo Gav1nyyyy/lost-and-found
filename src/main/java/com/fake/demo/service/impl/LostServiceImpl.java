@@ -1,12 +1,14 @@
 package com.fake.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fake.demo.bean.entity.Lost;
 import com.fake.demo.mapper.LostMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -19,11 +21,11 @@ public class LostServiceImpl {
     public void create(Lost lost) {
         lost.setNameID(UUID.randomUUID().toString());
         lost.setFoundItem(0);
-        lostMapper.create(lost);
+        lostMapper.insert(lost);
     }
 
     public int update(Lost lost) {
-        return lostMapper.update(lost);
+        return lostMapper.updateById(lost);
     }
 
     public void updateStatus(String id, String itemId){
@@ -34,15 +36,16 @@ public class LostServiceImpl {
     }
 
     public int remove(String nameID) {
-        return lostMapper.remove(nameID);
+        return lostMapper.deleteById(nameID);
     }
 
     public Lost fetchById(String nameID){
-        return lostMapper.fetchById(nameID);
+        return lostMapper.selectById(nameID);
     }
 
-    public List<Lost> fetchByPage(int size, int page){
-        int offset = (page - 1) * size;
-        return lostMapper.fetchByPage(size, offset);
+    public Page<Lost> fetchByPage(int size, int current, Lost lost){
+        LambdaQueryWrapper<Lost> lostLambdaQueryWrapper = Wrappers.lambdaQuery();
+        lostLambdaQueryWrapper.eq(lost.getName() !=null, Lost::getName, lost.getName());
+        return lostMapper.selectPage(new Page<>(current, size), lostLambdaQueryWrapper);
     }
 }
