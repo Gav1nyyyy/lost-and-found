@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.fake.demo.bean.entity.Lost;
 import com.fake.demo.mapper.LostMapper;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.PageSerializable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,13 +45,6 @@ public class LostServiceImpl {
         return lostMapper.selectById(nameID);
     }
 
-//    // using Pagination in mybatis plus:
-//    public Page<Lost> fetchByPage(int size, int current, Lost lost){
-//        LambdaQueryWrapper<Lost> lostLambdaQueryWrapper = Wrappers.lambdaQuery();
-//        lostLambdaQueryWrapper.eq(lost.getName() !=null, Lost::getName, lost.getName());
-//        return lostMapper.selectPage(new Page<>(current, size), lostLambdaQueryWrapper);
-//    }
-
     public PageSerializable<Lost> fetchByPage(int size, int current, Lost lost){
         PageHelper.startPage(current, size);
         LambdaQueryWrapper<Lost> lostLambdaQueryWrapper = Wrappers.lambdaQuery();
@@ -60,4 +52,11 @@ public class LostServiceImpl {
         List<Lost> losts = lostMapper.selectList(lostLambdaQueryWrapper);
         return PageSerializable.of(losts);
     }
+
+//    // using Pagination in mybatis plus:
+//    public Page<Lost> fetchByPage(int size, int current, Lost lost){
+//        LambdaQueryWrapper<Lost> lostLambdaQueryWrapper = Wrappers.lambdaQuery();
+//        lostLambdaQueryWrapper.eq(lost.getName() !=null, Lost::getName, lost.getName());
+//        return lostMapper.selectPage(new Page<>(current, size), lostLambdaQueryWrapper);
+//    }
 }

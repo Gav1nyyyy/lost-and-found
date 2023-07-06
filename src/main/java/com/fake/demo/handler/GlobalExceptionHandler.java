@@ -1,8 +1,7 @@
 package com.fake.demo.handler;
 
 import com.fake.demo.bean.Result;
-import com.fake.demo.exception.ExceptionEnum;
-import com.fake.demo.exception.NoSuchIdException;
+import com.fake.demo.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,11 +22,18 @@ public class GlobalExceptionHandler {
         return Result.error(ExceptionEnum.INPUT_ERROR);
     }
 
-    @ExceptionHandler(value = NoSuchIdException.class)
+    @ExceptionHandler(value = LoginBaseException.class)
     @ResponseBody
-    public Result<String> exceptionHandler(NoSuchIdException e){
-        log.error("no such id found", e);
-        return Result.error(ExceptionEnum.ID_NOT_FOUND);
+    public Result<String> exceptionHandler(LoginBaseException e){
+        log.error(e.getExceptionEnum().getErrorMsg(), e);
+        return Result.error(e.getExceptionEnum());
+    }
+
+    @ExceptionHandler(value = LostBaseException.class)
+    @ResponseBody
+    public Result<String> exceptionHandler(LostBaseException e){
+        log.error(e.getExceptionEnum().getErrorMsg(), e);
+        return Result.error(e.getExceptionEnum());
     }
 
     @ExceptionHandler(value = SQLException.class)

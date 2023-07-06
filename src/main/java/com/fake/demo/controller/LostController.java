@@ -2,18 +2,15 @@ package com.fake.demo.controller;
 
 import com.fake.demo.bean.Result;
 import com.fake.demo.bean.entity.Lost;
-import com.fake.demo.exception.NoSuchIdException;
+import com.fake.demo.exception.ExceptionEnum;
+import com.fake.demo.exception.LostBaseException;
 import com.fake.demo.service.impl.LostServiceImpl;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.PageSerializable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/lost")
@@ -47,7 +44,7 @@ public class LostController {
     @GetMapping(value = "/remove")
     public Result<String> remove(@RequestParam String id){
         if(lostService.remove(id) == 0){
-            throw new NoSuchIdException();
+            throw new LostBaseException(ExceptionEnum.ID_NOT_FOUND);
         }
         return Result.success();
     }
@@ -55,7 +52,7 @@ public class LostController {
     @PostMapping(value = "/update")
     public Result<String> update(@Valid @RequestBody Lost lost){
         if(lostService.update(lost) == 0){
-            throw new NoSuchIdException();
+            throw new LostBaseException(ExceptionEnum.ID_NOT_FOUND);
         }
         return Result.success();
     }
