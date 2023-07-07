@@ -2,7 +2,8 @@ package com.fake.demo.interceptor;
 
 import com.fake.demo.exception.LoginBaseException;
 import com.fake.demo.exception.ExceptionEnum;
-import com.fake.demo.utility.TokenUtil;
+import com.fake.demo.service.impl.RedisServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -12,16 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class LostInterceptor implements HandlerInterceptor {
+
+    private final RedisServiceImpl redisService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // show request information in console
-        log.info("preHandle");
-        log.info(request.getRequestURL().toString());
-        log.info(request.getRequestURI());
+        log.info("preHandle URL is {}", request.getRequestURL().toString());
         String token = request.getHeader("token");
-        if(!TokenUtil.checkToken(token)){
+        if(!redisService.hasKey("Auth:Login:" + token)){
             throw new LoginBaseException(ExceptionEnum.PERMISSION_DENIED);
         }
         return true;

@@ -10,11 +10,11 @@ import java.util.UUID;
 
 public class TokenUtil {
 
-    private static Map<String, User> tokenMap = new HashMap<>();
+    private static final Map<String, User> tokenMap = new HashMap<>();
 
     public static String generateToken(User user){
         String token = UUID.randomUUID().toString();
-        tokenMap.put(token,user);
+        tokenMap.put(token, user);
         return token;
     }
 
@@ -27,10 +27,9 @@ public class TokenUtil {
     }
 
     public static void removeToken(String token){
-        if(!tokenMap.containsKey(token)){
+        if(!checkToken(token)){
             throw new LoginBaseException(ExceptionEnum.PASSWORD_NOT_MATCH);
         }
         tokenMap.remove(token);
     }
-
 }

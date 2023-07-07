@@ -11,19 +11,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@RequiredArgsConstructor // inject lostService with a constructor
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl {
 
     private final UserMapper userMapper;
     public User fetchByUsername(User user){
         // using mybatis plus
-        LambdaQueryWrapper<User> userLambdaQueryWrapper = Wrappers.lambdaQuery();
-        userLambdaQueryWrapper.eq(User::getUsername, user.getUsername());
-        User result = userMapper.selectOne(userLambdaQueryWrapper);
+//        LambdaQueryWrapper<User> userLambdaQueryWrapper = Wrappers.lambdaQuery();
+//        userLambdaQueryWrapper.eq(User::getUsername, user.getUsername());
+//        User result = userMapper.selectOne(userLambdaQueryWrapper);
 
         // using UserMapper
-        //User result = userMapper.fetchByUsername(user.getUsername());
+        User result = userMapper.fetchByUsername(user.getUsername());
 
         if(result == null){
             throw new LoginBaseException(ExceptionEnum.PASSWORD_NOT_MATCH);

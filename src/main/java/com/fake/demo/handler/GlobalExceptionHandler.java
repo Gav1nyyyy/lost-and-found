@@ -29,7 +29,8 @@ public class GlobalExceptionHandler {
         return Result.error(e.getExceptionEnum());
     }
 
-    @ExceptionHandler(value = LostBaseException.class)
+    @ExceptionHandler(value =
+            LostBaseException.class)
     @ResponseBody
     public Result<String> exceptionHandler(LostBaseException e){
         log.error(e.getExceptionEnum().getErrorMsg(), e);
