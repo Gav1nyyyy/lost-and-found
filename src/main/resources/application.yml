@@ -20,10 +20,9 @@ spring:
     database: 0
 
   mail:
-    host: smtp.139.com
-    port: 465
-    username: 17805310458@139.com
-    password: 2810713101QQqq
+    host: smtp.163.com
+    username: lostandfound2023@163.com
+    password: MYQQLSCBRLZPEXVE
     properties:
       mail:
         smtp:
@@ -31,11 +30,7 @@ spring:
           starttls:
             enable: true
             required: true
-          ssl:
-            enable: true
-    protocol: smtps
-    test-connection: true
-    default-encoding: UTF-8
+        debug: true
 
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
