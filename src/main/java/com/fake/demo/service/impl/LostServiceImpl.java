@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@RequiredArgsConstructor // inject lostService with a constructor
+@RequiredArgsConstructor // inject lostService with a constructor, same as @Autowired
 @Service
 public class LostServiceImpl {
 
