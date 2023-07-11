@@ -19,6 +19,24 @@ spring:
     port: 6379
     database: 0
 
+  mail:
+    host: smtp.139.com
+    port: 465
+    username: 17805310458@139.com
+    password: 2810713101QQqq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+    protocol: smtps
+    test-connection: true
+    default-encoding: UTF-8
+
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.fake.demo.bean.entity
