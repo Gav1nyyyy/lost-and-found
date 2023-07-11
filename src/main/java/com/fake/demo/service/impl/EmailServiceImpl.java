@@ -16,7 +16,7 @@ public class EmailServiceImpl {
         mailMessage.setTo(toEmail);
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
-        mailMessage.setFrom("17805310458@139.com");
+        mailMessage.setFrom("lostandfound2023@163.com");
         javaMailSender.send(mailMessage);
     }
 }
